@@ -7,9 +7,6 @@ RUN apk --update add clamav clamav-libunrar \
 RUN mkdir /run/clamav/ && \
     chown clamav:clamav /run/clamav
 
-# Persist virus databases
-VOLUME /var/lib/clamav
-
 RUN sed -i 's/^#Foreground .*$/Foreground true/g' /etc/clamav/clamd.conf \
     && sed -i 's/^#TCPSocket .*$/TCPSocket 3310/g' /etc/clamav/clamd.conf \
     && sed -i 's/^#Foreground .*$/Foreground true/g' /etc/clamav/freshclam.conf

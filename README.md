@@ -17,8 +17,3 @@ link:
 
     docker run -d --name clamav geekduck/clamavd
     docker run -d --link clamav:clamav some_app
-
-
-If you want to persist virus databases:
-
-    docker run -d --name clamav -v <PATH_TO_SAVE_DIR>:/var/lib/clamav -p 3310:3310 geekduck/clamavd
