@@ -1,11 +1,9 @@
 FROM alpine:latest
 MAINTAINER KAMO Yasuhiro <duck1218+github@gmail.com>
 
-RUN apk --update add clamav clamav-libunrar \
-    && rm -rf /var/cache/apk/*
-
-RUN mkdir /run/clamav/ && \
-    chown clamav:clamav /run/clamav
+RUN apk --no-cache add clamav clamav-libunrar \
+    && mkdir /run/clamav \
+    && chown clamav:clamav /run/clamav
 
 RUN sed -i 's/^#Foreground .*$/Foreground true/g' /etc/clamav/clamd.conf \
     && sed -i 's/^#TCPSocket .*$/TCPSocket 3310/g' /etc/clamav/clamd.conf \
